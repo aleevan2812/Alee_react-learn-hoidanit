@@ -6,6 +6,7 @@ const HomePage = () => {
       {/*<video autoPlay muted loop>*/}
       {/*  <source src={videoHomePage} type="video/webm" />*/}
       {/*</video>*/}
+      <div className="homepage-content">This is Home page</div>
     </div>
   );
 };

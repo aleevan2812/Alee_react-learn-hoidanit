@@ -20,6 +20,10 @@ const Header = () => {
 
           </Nav>
           <Nav>
+
+            <button className='btn-login'>Log in</button>
+            <button className='btn-signup'>Sign up</button>
+            
             <NavDropdown title="Settings" id="basic-nav-dropdown">
               <NavDropdown.Item>Log in</NavDropdown.Item>
               <NavDropdown.Item>
