@@ -2,7 +2,7 @@
 
 
 const TableUser = (props) => {
-  const {listUsers} = props;
+  const {listUsers, handleClickBtnUpdate} = props;
 
   return (
     <>
@@ -10,7 +10,7 @@ const TableUser = (props) => {
         <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Username</th> 
+          <th scope="col">Username</th>
           <th scope="col">Email</th>
           <th scope="col">Role</th>
           <th scope="col">Action</th>
@@ -20,13 +20,13 @@ const TableUser = (props) => {
         {listUsers && listUsers.length > 0 && listUsers.map((item, index) => {
           return (
             <tr key={`table-user-${index}`}>
-              <th scope="row">{index}</th>
+              <th scope="row">{item.id}</th>
               <td>{item.username}</td>
               <td>{item.email}</td>
               <td>{item.role}</td>
               <td>
                 <button className='btn'>View</button>
-                <button className='btn btn-warning'>Update</button>
+                <button className='btn btn-warning' onClick={() => handleClickBtnUpdate(item)}>Update</button>
                 <button className='btn btn-danger'>Delete</button>
               </td>
             </tr>

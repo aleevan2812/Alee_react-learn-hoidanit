@@ -1,13 +1,14 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {FcPlus} from 'react-icons/fc';
 import {ToastContainer, toast} from 'react-toastify';
 import {postCreateNewUser} from "../../../services/apiService";
+import _ from "lodash";
 
-const ModelStateUser = (props) => {
-  const {show, setShow} = props;
+const ModelStateUpdateUser = (props) => {
+  const {show, setShow, dataUpdate} = props;
   const handleClose = () => {
     setShow(false);
     setEmail('');
@@ -25,6 +26,18 @@ const ModelStateUser = (props) => {
   const [image, setImage] = useState('');
   const [previewImage, setPreviewImage] = useState('');
 
+  useEffect(() => {
+    console.log(dataUpdate);
+
+    if (!_.isEmpty(dataUpdate)) {
+      setEmail(dataUpdate.email);
+      setUsername(dataUpdate.username);
+      setRole(dataUpdate.role);
+      setImage('');
+      if (dataUpdate.image)
+        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
+    }
+  }, [dataUpdate]);
   const handleUploadImage = (event) => {
     if (event.target && event.target.files && event.target.files[0]) {
       setPreviewImage(URL.createObjectURL(event.target.files[0]));
@@ -77,19 +90,19 @@ const ModelStateUser = (props) => {
 
       <Modal show={show} onHide={handleClose} size='xl' backdrop='static' className='model-add-user'>
         <Modal.Header closeButton>
-          <Modal.Title>Add new user</Modal.Title>
+          <Modal.Title>Update user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="row g-3">
             <div className="col-md-6">
               <label className="form-label">Email</label>
               <input type="email" className="form-control" value={email}
-                     onChange={(event) => setEmail(event.target.value)}/>
+                     onChange={(event) => setEmail(event.target.value)} disabled/>
             </div>
             <div className="col-md-6">
               <label className="form-label">Password</label>
               <input type="password" className="form-control" value={password}
-                     onChange={(event) => setPassword(event.target.value)}/>
+                     onChange={(event) => setPassword(event.target.value)} disabled/>
             </div>
 
             <div className="col-md-6">
@@ -134,4 +147,4 @@ const ModelStateUser = (props) => {
     </>);
 }
 
-export default ModelStateUser;
+export default ModelStateUpdateUser;
