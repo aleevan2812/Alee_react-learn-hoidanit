@@ -6,6 +6,7 @@ import {Outlet} from "react-router-dom";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const Admin = (props) => {
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -16,11 +17,14 @@ const Admin = (props) => {
       <div className="admin-content">
         <FaBars onClick={() => setCollapsed(!collapsed)}/>
         {/*This is admin-content*/}
+        <div className='admin-header'>
+          this is admin-header
+        </div>
+        <div className='admin-main'>
+          <Outlet/>
+        </div>
       </div>
-      <div className='admin-main'>
-        <Outlet/>
-
-      </div>
+      
       <ToastContainer
         position="top-right"
         autoClose={3000}

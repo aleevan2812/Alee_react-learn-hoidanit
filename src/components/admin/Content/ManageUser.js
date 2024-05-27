@@ -1,6 +1,7 @@
 import ModelCreateUser from "./ModelCreateUser";
 import './ManageUser.scss';
 import {useState} from "react";
+import TableUser from "./TableUser";
 
 const ManageUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
@@ -13,7 +14,7 @@ const ManageUser = (props) => {
           <button onClick={() => setShowModalCreateUser(true)}>Add new user</button>
         </div>
         <div className='table-users-container'>
-          Table users
+          <TableUser/>
         </div>
         <ModelCreateUser show={showModalCreateUser} setShow={setShowModalCreateUser}/>
       </div>
