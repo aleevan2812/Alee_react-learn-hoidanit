@@ -7,7 +7,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import {postCreateNewUser, putUpdateUser} from "../../../services/apiService";
 import _ from "lodash";
 
-const ModelStateUpdateUser = (props) => {
+const ModalUpdateUser = (props) => {
   const {show, setShow, dataUpdate} = props;
   const handleClose = () => {
     setShow(false);
@@ -144,4 +144,4 @@ const ModelStateUpdateUser = (props) => {
     </>);
 }
 
-export default ModelStateUpdateUser;
+export default ModalUpdateUser;
