@@ -8,7 +8,6 @@ import {postCreateNewUser} from "../../../services/apiService";
 
 const ModelStateUser = (props) => {
   const {show, setShow} = props;
-
   const handleClose = () => {
     setShow(false);
     setEmail('');
@@ -60,6 +59,7 @@ const ModelStateUser = (props) => {
     if (data && data.EC === 0) {
       toast.success(data.EM);
       handleClose(false);
+      await props.fetchUsers();
     }
 
     if (data && data.EC !== 0) {

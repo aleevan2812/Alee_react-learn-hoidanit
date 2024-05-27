@@ -1,27 +1,16 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
-import {useEffect, useState} from "react";
-import {getAllUsers} from "../../../services/apiService";
+
 
 const TableUser = (props) => {
-  const [listUsers, setListUsers] = useState([]);
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
-    let res = await getAllUsers();
-    console.log(res);
-    setListUsers(res.DT);
-  }
+  const {listUsers} = props;
 
   return (
     <>
       <table className="table table-hover table-bordered">
         <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Username</th>
+          <th scope="col">ID</th>
+          <th scope="col">Username</th> 
           <th scope="col">Email</th>
           <th scope="col">Role</th>
           <th scope="col">Action</th>
