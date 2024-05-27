@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import TableUser from "./TableUser";
 import {getAllUsers} from "../../../services/apiService";
 import ModelUpdateUser from "./ModalUpdateUser";
+import user from "../../user/User";
 
 const ManageUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
@@ -27,7 +28,10 @@ const ManageUser = (props) => {
     setShowModalUpdateUser(true);
     setDataUpdate(user);
   }
-
+  
+  const resetUpdateData = () => {
+    setDataUpdate({});
+  }
   return (
     <div className='manage-user-container'>
       <div className="title">Manage User</div>
@@ -39,7 +43,7 @@ const ManageUser = (props) => {
           <TableUser listUsers={listUsers} handleClickBtnUpdate={handleClickBtnUpdate} />
         </div>
         <ModalCreateUser show={showModalCreateUser} setShow={setShowModalCreateUser} fetchUsers={fetchUsers}/>
-        <ModelUpdateUser show={showModalUpdateUser} setShow={setShowModalUpdateUser} fetchUsers={fetchUsers} dataUpdate={dataUpdate} />
+        <ModelUpdateUser show={showModalUpdateUser} setShow={setShowModalUpdateUser} fetchUsers={fetchUsers} dataUpdate={dataUpdate} resetUpdateData = {resetUpdateData} />
       </div>
     </div>
   );
