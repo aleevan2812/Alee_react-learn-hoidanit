@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postLogin } from "../../services/apiService";
+import { postLogin, postRegister } from "../../services/apiService";
 import { toast } from "react-toastify";
 
-const Login = () => {
+const Register = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     // validate
 
     // submit api
-    let data = await postLogin(email, password);
-    console.log(">>> res Login: ", data);
+    let data = await postRegister(username, email, password);
+    console.log(">>> res Register: ", data);
     if (data && data.EC === 0) {
       toast.success(data.EM);
-      navigate("/");
+      navigate("/login");
     }
 
     if (data && data.EC !== 0) {
@@ -29,12 +31,16 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="header">
-        <span>Dont have an account yet</span>
-        <button onClick={() => navigate("/register")}>Sign up</button>
-      </div>
-      <div className="title">This is title</div>
       <div className="content-form col-4 mx-auto">
+        <div className="form-group">
+          <label htmlFor="">Username</label>
+          <input
+            type="text"
+            className="form-control"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="">Email</label>
           <input
@@ -55,8 +61,13 @@ const Login = () => {
         </div>
         <span className="forgot-password">Forgot pass</span>
         <div>
-          <button className="btn-submit" onClick={() => handleLogin()}>
-            Login to Alee
+          <button
+            className="btn-submit"
+            onClick={() => {
+              handleRegister();
+            }}
+          >
+            Register
           </button>
         </div>
         <div className="text-center">
@@ -69,4 +80,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
